@@ -1,4 +1,5 @@
 import re
+import unittest
 
 class Password:
     def ValidPassword(self, pwd):
@@ -33,6 +34,27 @@ class Password:
                 return False
         else:
             raise TypeError("Invalid type: {}".format(type(pwd)))
+
+
+class PasswordTest(unittest.TestCase):
+
+    def test_pwd_false_1(self):
+        self.assertEqual(False, Password.ValidPassword(431412333))
+
+    def test_pwd_false_2(self):
+        self.assertEqual(False, Password.ValidPassword('d2ws'))
+
+    def test_pwd_false_3(self):
+        self.assertEqual(False, Password.ValidPassword('dasdasdas21231'))
+
+    def test_pwd_true_1(self):
+        self.assertEqual(True, Password.ValidPassword('ZAQ!2wsx'))
+
+    def test_pwd_true_2(self):
+        self.assertEqual(True, Password.ValidPassword('H@s1o!2#4%'))
+
+    def test_pwd_Exceptions(self):
+        self.assertRaises(TypeError, Password.ValidPassword, Password())
 
 if __name__ == "__main__":
     import doctest
