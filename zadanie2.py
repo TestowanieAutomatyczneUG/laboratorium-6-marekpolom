@@ -38,24 +38,31 @@ class Password:
 
 class PasswordTest(unittest.TestCase):
 
+    def setUp(self):
+        self.temp = Password()
+
     def test_pwd_false_1(self):
-        self.assertEqual(False, Password.ValidPassword(431412333))
+        self.assertEqual(False, self.temp.ValidPassword(431412333))
 
     def test_pwd_false_2(self):
-        self.assertEqual(False, Password.ValidPassword('d2ws'))
+        self.assertEqual(False, self.temp.ValidPassword('d2ws'))
 
     def test_pwd_false_3(self):
-        self.assertEqual(False, Password.ValidPassword('dasdasdas21231'))
+        self.assertEqual(False, self.temp.ValidPassword('dasdasdas21231'))
 
     def test_pwd_true_1(self):
-        self.assertEqual(True, Password.ValidPassword('ZAQ!2wsx'))
+        self.assertEqual(True, self.temp.ValidPassword('ZAQ!2wsx'))
 
     def test_pwd_true_2(self):
-        self.assertEqual(True, Password.ValidPassword('H@s1o!2#4%'))
+        self.assertEqual(True, self.temp.ValidPassword('H@s1o!2#4%'))
 
     def test_pwd_Exceptions(self):
-        self.assertRaises(TypeError, Password.ValidPassword, Password())
+        self.assertRaises(TypeError, self.temp.ValidPassword, Password())
+
+    def tearDown(self):
+        self.temp = None
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod(extraglobs={'c': Password()})
+    unittest.main()
